@@ -68,7 +68,7 @@ function elementLocatorAwait(elementLocaorType, elementLocaorPath) {
 }
 
 
-function conncuiElementOpreate(elementDesc){
+function SmElementOpreate(elementDesc){
     console.log("conncuiElementOpreate "+elementDesc);
     switch(elementDesc[1]){
         case ElementOperateType.Click:
@@ -80,14 +80,14 @@ function conncuiElementOpreate(elementDesc){
     }
 }
 
-function conncuiChainEvent(element_desc_list){
+function SmChainEvent(element_desc_list){
     element_desc_list.forEach(click);
     function click(value, index, array) {
         console.log("wait "+value);
         elementLocatorAwait(value[2],value[3]).then((elm) => {
             console.log(value+' is ready');
             element_desc_list[index][0]=elm
-            conncuiElementOpreate(value)
+            SmElementOpreate(value)
         });
     }
 }
