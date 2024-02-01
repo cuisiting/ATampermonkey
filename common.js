@@ -21,6 +21,11 @@ function getAllElementByXpath(xpath) {
     return xnodes;
 }
 
+function getAllElementByClass(className) {
+    var elements = document.getElementsByClassName(className);
+    return Array.from(elements); // 将HTMLCollection转换为数组
+}
+
 function elementLocatorAwait(elementLocaorType, elementLocaorPath) {
     console.log("elementLocatorAwait by "+elementLocaorType +", "+elementLocaorPath);
     switch(elementLocaorType){
