@@ -91,7 +91,6 @@ function elementLocatorAwait(elementLocaorType, elementLocaorPath) {
                 });
             });
             break;
-        
     }
 }
 
