@@ -1,7 +1,8 @@
 
 const ElementLocaorType = {
     XPATH: "Xpath",
-    Selector: "Selector"
+    Selector: "Selector",
+    ClassName: "ClassName"
 }
 const ElementOperateType = {
     Click: "Click",
@@ -69,6 +70,27 @@ function elementLocatorAwait(elementLocaorType, elementLocaorPath) {
                 });
             });
             break;
+        case ElementLocaorType.ClassName:
+            return new Promise(resolve => {
+                const elements = document.getElementsByClassName(elementLocaorPath);
+                if (elements.length > 0) {
+                    return resolve(elements[0]); // 返回第一个匹配的元素
+                }
+
+                const observer = new MutationObserver(mutations => {
+                    const elements = document.getElementsByClassName(elementLocaorPath);
+                    if (elements.length > 0) {
+                        resolve(elements[0]); // 当检测到变化时，返回第一个匹配的元素
+                        observer.disconnect();
+                    }
+                });
+
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            });
+        
     }
 }
 
