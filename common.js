@@ -90,6 +90,7 @@ function elementLocatorAwait(elementLocaorType, elementLocaorPath) {
                     subtree: true
                 });
             });
+            break;
         
     }
 }
