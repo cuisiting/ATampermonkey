@@ -2,7 +2,8 @@
 const ElementLocaorType = {
     XPATH: "Xpath",
     Selector: "Selector",
-    ClassName: "ClassName"
+    ClassName: "ClassName",
+    ID: "ID"
 }
 const ElementOperateType = {
     Click: "Click",
@@ -79,6 +80,27 @@ function elementLocatorAwait(elementLocaorType, elementLocaorPath) {
 
                 const observer = new MutationObserver(mutations => {
                     const elements = document.getElementsByClassName(elementLocaorPath);
+                    if (elements.length > 0) {
+                        resolve(elements[0]); // 当检测到变化时，返回第一个匹配的元素
+                        observer.disconnect();
+                    }
+                });
+
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            });
+            break;
+        case ElementLocaorType.ID: // Handling ID
+            return new Promise(resolve => {
+                const element = document.getElementById(elementLocaorPath);
+                if (elements.length > 0) {
+                    return resolve(elements[0]); // 返回第一个匹配的元素
+                }
+
+                const observer = new MutationObserver(mutations => {
+                    const element = document.getElementById(elementLocaorPath);
                     if (elements.length > 0) {
                         resolve(elements[0]); // 当检测到变化时，返回第一个匹配的元素
                         observer.disconnect();
