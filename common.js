@@ -95,14 +95,14 @@ function elementLocatorAwait(elementLocaorType, elementLocaorPath) {
         case ElementLocaorType.ID: // Handling ID
             return new Promise(resolve => {
                 const element = document.getElementById(elementLocaorPath);
-                if (elements.length > 0) {
-                    return resolve(elements[0]); // 返回第一个匹配的元素
+                if (element) {
+                    return resolve(element);
                 }
 
                 const observer = new MutationObserver(mutations => {
                     const element = document.getElementById(elementLocaorPath);
-                    if (elements.length > 0) {
-                        resolve(elements[0]); // 当检测到变化时，返回第一个匹配的元素
+                    if (element) {
+                        resolve(element);
                         observer.disconnect();
                     }
                 });
